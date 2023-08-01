@@ -1,0 +1,93 @@
+1. What is the need of IAM?
+Ans: IAM(Identity Access Management) manages AWS users and their access to AWS accounts and services.It controls the level of access a user have over an AWS accountand set users , 
+grant permission and allow a user to use different features of an AWS account.IAM is mainly used to manage users,groups, roles and Access policies.
+Account created to enter AWS is root account which holds all admin rights and access to all parts of the account. The new user created do not have any access to any services in the account 
+and it is done with the help of IAM that the root account holder can implements policies and grant permission to the user to access certain services.
+
+IAM verifies that a user or service has the necessary authorization to access a particular service in AWS cloud. IAM can also be used to grant the right level of access to specific users, groups or services
+
+IAM have identities which helps us in controlling which users can access which service and resource in AWS console.We can assign policies to users , groups and roles. The IAM isentities can be created by root user.IAM identities are classified as 
+1>IAM Users,
+2>IAM Groups,
+3>IAM Roles 
+===========================================================================================================================================================================================
+2. If i am a non tech person, how will you define policies inIAM.
+
+A policy is an entity that, when attached to an identity or resource, defines their permissions.We manage access in AWS by creating policies and attaching them to IAM identities 
+(users, groups of users, and roles) or AWS resources. Policies specify a set of permissions. Permissions in the policies determine whether the request is allowed or denied. 
+
+There are three types of IAM policies:
+
+    AWS Managed Policy
+    Customer Managed Policy
+    Inline Policy
+
+AWS Managed Policy is a standalone policy that is created and administered by AWS. AWS managed policies could be reused between IAM entities (users, groups, or roles) and cannot be modified. 
+
+Customer Managed Policy is a standalone policy that is created by a user. Customer managed policies could be reused between IAM entities and can be modified.
+
+Inline Policy is a policy that is created by a user and embedded directly to IAM entities. Inline policies cannot be reused in different IAM entities as it emphasizes direct one-to-one relationship
+between entity and the policy itself.Once the entity is deleted, inline policies attached to it get removed as well. 
+
+==================================================================================================================================================================================================
+3. Please define a scenerio in which you would like to createyour on own IAM policy.
+
+Ans : Imagine you are a software developer and you've been working on a personal project management tool that you plan to deploy on the cloud. The tool will allow users to create and manage their projects,
+assign tasks, set deadlines, and collaborate with team members.
+
+In this scenario, you would like to create your own IAM (Identity and Access Management) policy to ensure that the right level of access is granted to different users and resources within your application. 
+==================================================================================================================================================================================================
+4.Why do we prefer not using root account?
+
+Ans:Following are the reasons coz of which root user should not be used:
+1>because of security risks involved . If credentials are compromised then attacker could gain access to all resources 
+
+2>No accountability as in who performed the following action if all the users ahve equal righs like root account.
+
+3>Least Privilege principle:AWS follows least privilege principle which means user should have only necessary permissions to perform the tasks.
+
+5.How to revoke policy for an IAM user?
+Ans:To revoke a policy for an IAM user in AWS, you can follow these steps:
+
+    1>Sign in to the AWS Management Console with an account that has administrative permissions or IAM user management privileges.
+
+    2>Navigate to the IAM (Identity and Access Management) service.
+
+    3>In the left-hand navigation pane, click on "Users" to view a list of IAM users in your account.
+
+    4>Locate and select the IAM user for whom you want to revoke the policy.
+
+    5>In the "Permissions" tab, you will see the attached policies for the selected IAM user. This section lists all the policies that grant permissions to the user.
+
+    6>To revoke a policy, click on the policy's name in the list to highlight it.
+
+    7>Click on the "Detach Policy" button at the top of the policy list. A confirmation dialog will appear.
+
+    8>Confirm the action by clicking on the "Detach" button in the dialog. The selected policy will be revoked from the IAM user.
+
+    9>After detaching the policy, make sure that the IAM user still has the necessary permissions to perform their required tasks.
+If needed, attach other policies or modify existing ones to ensure the user has appropriate access.
+
+It's crucial to review the permissions being revoked carefully to avoid accidental removal of essential access. Additionally, always follow the principle of least privilege, granting IAM users only the minimum permissions they need to perform their tasks.
+===========================================================================================================================================================================================================
+6. Can a single IAM user be a part of multiple policy via groupand root? how?
+
+Yes, a single IAM user can be associated with multiple policies through IAM groups and also through the root account in AWS. This allows you to manage permissions in a more organized and centralized manner
+while following the principle of least privilege.
+Here's how a single IAM user can be part of multiple policies via groups and the root account:
+
+1> IAM Groups:
+        Create IAM Groups: First, create IAM groups based on functional roles or access levels. For example, you can have groups like "Developers," "Administrators," or "Read-Only Users."
+        Attach Policies to Groups: Attach the relevant IAM policies to each group based on the permissions required for the specific roles. Policies can be custom policies or AWS managed policies.
+        Add IAM User to Groups: Associate the IAM user with one or more groups based on their roles and responsibilities. This can be done in the IAM user's settings by clicking on the "Add user to groups" 
+        button and selecting the appropriate groups.
+
+2> Root Account (Not Recommended):
+        Although not recommended for regular use, the root account has full access to all AWS resources by default.
+        If you associate IAM users with the root account, they will inherit all permissions associated with the root account. However, using the root account for regular operations is discouraged due to security 
+risks and lack of accountability.
+
+By using IAM groups, you can easily manage permissions for multiple users with similar roles and apply changes uniformly to a group, affecting all its members simultaneously. This simplifies access control and 
+improves manageability compared to attaching policies directly to individual IAM users.
+====================================================================================================================================================================================================================
+
